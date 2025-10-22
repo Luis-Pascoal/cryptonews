@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CryptoNews.Africa — Notícias de Cripto & Tecnologia</title>
+  <meta name="description" content="CryptoNews.Africa — Portal leve com notícias automáticas de criptomoedas e tecnologia. Agregador RSS das principais fontes como CoinDesk, CoinTelegraph e TechCrunch.">
+  <meta name="keywords" content="notícias cripto, coindesk, cointelegraph, techcrunch, notícias blockchain, cryptonews africa">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b1220;--card:#071029;--accent:#00d1b2;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#020416 0%,#071029 100%);color:#e6eef8}
+    .wrap{max-width:1000px;margin:1.6rem auto;padding:1rem}
+    header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+    .brand{font-weight:800;font-size:1.2rem}
+    .tag{color:var(--muted);font-weight:600}
+    .card{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:1rem;margin-top:1rem}
+    .news-list{list-style:none;margin:0;padding:0}
+    .news-list li{padding:0.8rem;border-bottom:1px dashed rgba(255,255,255,0.03);display:flex;gap:.8rem;cursor:pointer}
+    .news-thumb{width:92px;height:64px;background:#081226;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;overflow:hidden}
+    .news-meta{flex:1}
+    .news-meta a{color:inherit;text-decoration:none;font-weight:700}
+    .news-meta p{margin:6px 0 0;color:var(--muted);font-size:0.92rem}
+    .ads-slot{height:90px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px dashed rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));margin-bottom:1rem}
+    footer{margin-top:1.2rem;color:var(--muted);font-size:0.9rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+    .controls{display:flex;gap:.6rem;align-items:center}
+    button{background:var(--accent);border:none;color:#01221a;padding:.5rem .7rem;border-radius:8px;font-weight:700;cursor:pointer}
+    #loadMoreBtn{margin-top:1rem;display:block;width:100%;text-align:center;padding:0.6rem;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:8px;cursor:pointer;font-weight:600}
+    #loadMoreBtn:hover{background:var(--accent);color:#01221a}
+    #newsReader{display:none;flex-direction:column;gap:1rem}
+    #newsReader h2{margin-top:0}
+    #newsReader img{max-width:100%;border-radius:10px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}.news-thumb{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="brand">CryptoNews.Africa <span class="tag">— Notícias de Cripto & Tecnologia</span></div>
+        <div style="color:var(--muted);font-size:0.9rem;margin-top:6px">Agregador RSS: CoinDesk • Cointelegraph • TechCrunch • Decrypt</div>
+      </div>
+      <div class="controls">
+        <button id="refreshBtn">Atualizar</button>
+        <div id="lastUpdate" style="color:var(--muted);font-size:0.9rem;margin-left:8px">—</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card" id="mainCard">
+        <h2 style="margin-top:0">Últimas Notícias</h2>
+        <div class="ads-slot" id="topAd">A-ADS PLACEHOLDER</div>
+
+        <!-- Lista de notícias -->
+        <ul id="newsList" class="news-list" aria-live="polite">
+          <li style="color:var(--muted)">Carregando notícias...</li>
+        </ul>
+
+        <!-- Botão "ver mais" -->
+        <button id="loadMoreBtn" style="display:none">Ver mais notícias</button>
+
+        <!-- Seção de leitura de notícia -->
+        <div id="newsReader" class="card">
+          <button id="backBtn" style="background:#333;color:#fff;width:fit-content;">← Voltar</button>
+          <div id="newsContent"></div>
+        </div>
+
+        <div style="margin-top:1rem;color:var(--muted);font-size:0.9rem">Fonte: CoinDesk, CoinTelegraph, TechCrunch, Decrypt.</div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">Espaço de anúncios</h3>
+          <div class="ads-slot">A-ADS / Coinzilla</div>
+          <div style="height:1rem"></div>
+          <h4 style="margin-bottom:.4rem">Seções</h4>
+          <ul style="color:var(--muted);padding-left:1rem">
+            <li>Criptomoedas</li>
+            <li>Blockchain</li>
+            <li>Tecnologia</li>
+            <li>Análises</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+<section class="card" style="margin-top:1rem">
+  <h2 style="margin-top:0">📢 Destaque — Notícia da Casa</h2>
+  <p><strong>Angolanos já podem receber criptomoedas por meio da plataforma AirTM — e alguns estão a lucrar bem com isso!</strong></p>
+  
+  <p style="color:var(--muted)">
+    A popular plataforma financeira <strong>AirTM</strong> já está plenamente funcional em Angola, 
+    permitindo que usuários recebam pagamentos internacionais em criptomoedas e façam conversões 
+    diretas para Kwanza por meio de intermediários verificados.  
+    <br><br>
+    Embora ainda seja uma novidade para muitos, a verdade é que um número crescente de angolanos 
+    já utiliza a AirTM diariamente — tanto para receber valores em <em>USDT</em>, <em>Bitcoin</em> 
+    e outras moedas digitais, quanto para atuar como <strong>parceiros P2P</strong> dentro da plataforma.  
+  </p>
+
+  <!-- 🪙 BLOCO DE ANÚNCIO CENTRAL -->
+  <div style="margin:1.5rem 0; text-align:center;">
+    <!-- Exemplo de bloco A-ADS -->
+    <iframe data-aa="1234567" src="//ad.a-ads.com/1234567?size=728x90" 
+      style="width:728px; height:90px; border:0; padding:0; overflow:hidden; background:none;" 
+      allowtransparency="true" scrolling="no"></iframe>
+    <!-- Substituir o código acima pelo teu bloco de anúncios real -->
+  </div>
+
+  <p style="color:var(--muted)">
+    Esses parceiros facilitam trocas entre usuários, movimentam criptomoedas e, em alguns casos, 
+    chegam a obter rendimentos consideráveis apenas com as comissões das operações.  
+    <br><br>
+    Em grupos privados e comunidades online, já circulam relatos de jovens empreendedores locais 
+    que conseguiram transformar o P2P da AirTM numa fonte estável de renda, aproveitando o 
+    crescimento da economia digital e a procura por alternativas ao sistema bancário tradicional.  
+    <br><br>
+    Com essa tendência em expansão, a AirTM começa a ganhar visibilidade como uma das plataformas 
+    mais promissoras para a inclusão financeira digital em Angola.
+  </p>
+
+  <p style="font-size:0.9rem;color:var(--muted)">
+    Publicado em 22 de Outubro de 2025 • Por <strong>João Pascoal</strong>
+  </p>
+</section>
+
+
+
+
+
+    <section style="margin-top:1rem" class="card">
+      <h3 style="margin-top:0">Sobre CryptoNews.Africa</h3>
+      <p style="color:var(--muted)">Portal automático de notícias sobre criptomoedas e tecnologia. Projeto leve para deploy rápido em GitHub Pages ou Netlify.</p>
+    </section>
+
+    <footer>
+      <div>© CryptoNews.Africa — Feito por João</div>
+      <div style="color:var(--muted)">Feeds: CoinDesk / Cointelegraph / TechCrunch / Decrypt</div>
+    </footer>
+  </div>
+
+  <script>
+    const feeds = [
+      {name:'CoinDesk', url:'https://www.coindesk.com/arc/outboundfeeds/rss/'},
+      {name:'CoinTelegraph', url:'https://cointelegraph.com/rss'},
+      {name:'TechCrunch Crypto', url:'https://techcrunch.com/tag/cryptocurrency/feed/'},
+      {name:'Decrypt', url:'https://decrypt.co/feed'}
+    ];
+
+    const newsList = document.getElementById('newsList');
+    const newsReader = document.getElementById('newsReader');
+    const newsContent = document.getElementById('newsContent');
+    const mainCard = document.getElementById('mainCard');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const backBtn = document.getElementById('backBtn');
+    const lastUpdate = document.getElementById('lastUpdate');
+
+    let entries = [];
+    let displayedCount = 0;
+
+    async function fetchFeed(url){
+      try{
+        const res = await fetch(url);
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        const parser = new DOMParser();
+        return parser.parseFromString(text, 'application/xml');
+      }catch(err){
+        console.warn('Erro fetchFeed', url, err);
+        return null;
+      }
+    }
+
+    function parseItems(xml){
+      const items = xml.querySelectorAll('item');
+      const out = [];
+      items.forEach(it=>{
+        const title = it.querySelector('title')?.textContent || 'Sem título';
+        const link = it.querySelector('link')?.textContent || '#';
+        const pub = it.querySelector('pubDate')?.textContent || '';
+        let desc = it.querySelector('description')?.textContent || '';
+        let img = '';
+        const media = it.getElementsByTagName('media:content')[0];
+        if(media) img = media.getAttribute('url');
+        const enclosure = it.querySelector('enclosure')?.getAttribute('url');
+        if(enclosure) img = enclosure;
+        out.push({title, link, pub, img, desc});
+      });
+      return out;
+    }
+
+    async function loadNews(){
+      newsList.innerHTML = '<li style="color:var(--muted)">Carregando notícias...</li>';
+      entries = [];
+      for(const f of feeds){
+        const xml = await fetchFeed(f.url);
+        if(!xml) continue;
+        const parsed = parseItems(xml);
+        parsed.forEach(p => entries.push({source:f.name, ...p}));
+      }
+
+      if(entries.length === 0){
+        newsList.innerHTML = '<li style="color:var(--muted)">Erro ao carregar (CORS).</li>';
+        return;
+      }
+
+      entries.sort((a,b)=> new Date(b.pub||0) - new Date(a.pub||0));
+      displayedCount = 0;
+      renderMoreNews();
+      loadMoreBtn.style.display = entries.length > 10 ? 'block' : 'none';
+      lastUpdate.textContent = "Atualizado: " + new Date().toLocaleTimeString();
+    }
+
+    function renderMoreNews(){
+      const slice = entries.slice(displayedCount, displayedCount + 10);
+      if(displayedCount === 0) newsList.innerHTML = '';
+      slice.forEach(e=>{
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="news-thumb">${e.img ? `<img src="${e.img}" alt="" style="width:100%;height:100%;object-fit:cover;">` : 'img'}</div>
+          <div class="news-meta">
+            <a>${e.title}</a>
+            <p>${e.source} • ${e.pub? new Date(e.pub).toLocaleString() : ''}</p>
+          </div>`;
+        li.addEventListener('click', ()=> openNews(e));
+        newsList.appendChild(li);
+      });
+      displayedCount += slice.length;
+      if(displayedCount >= entries.length) loadMoreBtn.style.display = 'none';
+    }
+
+    function openNews(news){
+      newsReader.style.display = 'flex';
+      newsList.style.display = 'none';
+      loadMoreBtn.style.display = 'none';
+      newsContent.innerHTML = `
+        <h2>${news.title}</h2>
+        ${news.img ? `<img src="${news.img}" alt="">` : ''}
+        <p style="color:var(--muted)">${news.source} — ${news.pub? new Date(news.pub).toLocaleString() : ''}</p>
+        <p>${news.desc}</p>
+        <p style="margin-top:1rem"><a href="${news.link}" target="_blank" style="color:var(--accent)">Ler no site original →</a></p>`;
+    }
+
+    backBtn.addEventListener('click', ()=>{
+      newsReader.style.display = 'none';
+      newsList.style.display = '';
+      loadMoreBtn.style.display = 'block';
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', loadNews);
+    loadMoreBtn.addEventListener('click', renderMoreNews);
+    loadNews();
+  </script>
+</body>
+</html>
